@@ -1,16 +1,16 @@
-# 🌟 LexiBlox — Plataforma Educativa Gamificada de Inglés para Niños (6 a 8 Años)
+#  LexiBlox — Plataforma Educativa Gamificada de Inglés para Niños (6 a 8 Años)
 
 > *"Construye tus palabras, construye tu mundo"*
 
 **LexiBlox** es una plataforma web educativa interactiva y gamificada diseñada para que niños pequeños de 6 a 8 años aprendan inglés de nivel básico a intermedio jugando. En lugar de una aburrida aula virtual o iconos genéricos, los estudiantes exploran reinos en bloques 3D con personajes originales, completan misiones de vocabulario y enfrentan los retos del villano **Vox** para ganar **LexiCoins**, puntos de experiencia (**XP**) y medallas.
 
 La plataforma cuenta con **dos portales independientes**:
-- 🧒 **Portal Estudiante**: Aventura, mapa de reinos, flashcards interactivas con pronunciación por voz real y quizzes animados.
-- 🧑‍🏫 **Portal Docente**: Dashboard analítico en tiempo real conectado a base de datos SQLite para supervisar el rendimiento de los niños y asignar misiones.
+-  **Portal Estudiante**: Aventura, mapa de reinos, flashcards interactivas con pronunciación por voz real y quizzes animados.
+-  **Portal Docente**: Dashboard analítico en tiempo real conectado a base de datos SQLite para supervisar el rendimiento de los niños y asignar misiones.
 
 ---
 
-## 🎮 Personajes Originales (Toy Cubes)
+##  Personajes Originales (Toy Cubes)
 
 | Personaje | Personalidad | Rol |
 |---|---|---|
@@ -22,7 +22,7 @@ La plataforma cuenta con **dos portales independientes**:
 
 ---
 
-## 💡 Novedades y Factores Diferenciales del Proyecto
+##  Novedades y Factores Diferenciales del Proyecto
 
 1. **Gamificación Genuina de Principio a Fin**: No es una plataforma con puntos añadidos por encima; la experiencia visual emula un videojuego de bloques (estilo LEGO/Minecraft infantil) con animaciones CSS fluidas.
 2. **Pronunciación Nativa Integrada**: Utiliza la Web Speech API (`SpeechSynthesis`) en el navegador para reproducir la dicción exacta de cada palabra en inglés sin depender de archivos de audio externos.
@@ -33,7 +33,7 @@ La plataforma cuenta con **dos portales independientes**:
 
 ---
 
-## 🛠️ Stack Tecnológico
+##  Stack Tecnológico
 
 - **Frontend Core**: HTML5 Semántico, CSS3 Moderno (Custom Properties, Flexbox, Grid, 3D Transforms, Keyframe Animations).
 - **Lógica e Interacción**: JavaScript ES6+ Modular (Arquitectura limpia por capas: Core / Student / Teacher).
@@ -43,14 +43,14 @@ La plataforma cuenta con **dos portales independientes**:
 
 ---
 
-## 🚀 Cómo Ejecutar el Proyecto
+##  Cómo Ejecutar el Proyecto
 
 No requiere instalación de Node ni servidores pesados. Solo abre con cualquier navegador moderno:
 
 1. Abre directamente el archivo `index.html` en tu navegador (o usa extensiones como *Live Server* en VSCode).
 2. Selecciona entre **Portal Estudiante** o **Portal Docente**.
 
-### 🔑 Cuentas de Demostración Preconfiguradas en SQLite:
+###  Cuentas de Demostración Preconfiguradas en SQLite:
 - **Estudiantes**:
   - `sofia` (PIN: `1234`) — Nivel 3, 280 LexiCoins, 5 días de racha.
   - `carlos` (PIN: `1234`) — Nivel 2, 190 LexiCoins.
