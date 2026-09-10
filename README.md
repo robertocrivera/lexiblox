@@ -1,6 +1,6 @@
-# 🌟 LexiBlox — Gamified English Learning Platform for Kids (6 to 8 Years Old)
+# 🌟 LexiBlox — Plataforma Educativa Gamificada de Inglés para Niños (6 a 8 Años)
 
-> *"Build your words, build your world"*
+> *"Construye tus palabras, construye tu mundo"*
 
 **LexiBlox** es una plataforma web educativa interactiva y gamificada diseñada para que niños pequeños de 6 a 8 años aprendan inglés de nivel básico a intermedio jugando. En lugar de una aburrida aula virtual o iconos genéricos, los estudiantes exploran reinos en bloques 3D con personajes originales, completan misiones de vocabulario y enfrentan los retos del villano **Vox** para ganar **LexiCoins**, puntos de experiencia (**XP**) y medallas.
 
