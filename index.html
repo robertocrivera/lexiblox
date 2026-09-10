@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LexiBlox — Plataforma de Inglés Didáctica para Niños</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700;800&family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="landing-body">
+  <div class="stars-bg"></div>
+
+  <div class="landing-container">
+    <!-- Header Hero -->
+    <header class="hero-header">
+      <div class="logo-badge float-anim">
+        <div class="mini-cube brixo-mini">
+          <div class="cube-studs"><span></span><span></span></div>
+          <div class="cube-face">
+            <span class="eye"></span><span class="eye"></span>
+            <span class="mouth"></span>
+          </div>
+        </div>
+        <span class="star-icon star-spin">⭐</span>
+      </div>
+      <h1 class="game-title">LexiBlox</h1>
+      <p class="game-tagline">“Build your words, build your world”</p>
+      <p class="game-desc">¡Aprende inglés explorando mundos mágicos de bloques, desbloquea recompensas y vence los retos del travieso Vox!</p>
+    </header>
+
+    <!-- Character Showcase -->
+    <section class="characters-row">
+      <div class="char-pill float-anim" style="animation-delay: 0s;">
+        <div class="char-avatar brixo-bg">🟦</div>
+        <div class="char-info">
+          <strong>Brixo</strong>
+          <small>Tu Guía Aventurero</small>
+        </div>
+      </div>
+      <div class="char-pill float-anim" style="animation-delay: 0.3s;">
+        <div class="char-avatar lexo-bg">🟥</div>
+        <div class="char-info">
+          <strong>Lexo</strong>
+          <small>Maestro Sabio</small>
+        </div>
+      </div>
+      <div class="char-pill float-anim" style="animation-delay: 0.6s;">
+        <div class="char-avatar zippy-bg">🟨</div>
+        <div class="char-info">
+          <strong>Zippy</strong>
+          <small>El Rayo Veloz</small>
+        </div>
+      </div>
+      <div class="char-pill float-anim" style="animation-delay: 0.9s;">
+        <div class="char-avatar vox-bg">🟪</div>
+        <div class="char-info">
+          <strong>Vox</strong>
+          <small>Retador de Quizzes</small>
+        </div>
+      </div>
+      <div class="char-pill float-anim" style="animation-delay: 1.2s;">
+        <div class="char-avatar stella-bg">⭐</div>
+        <div class="char-info">
+          <strong>Stella</strong>
+          <small>Recompensas & Monedas</small>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portals Selection Cards -->
+    <main class="portals-grid">
+      <!-- Student Portal -->
+      <article class="portal-card student-card pulse-glow">
+        <div class="card-badge">¡MODO JUEGO! 🎮</div>
+        <div class="portal-icon-wrap">
+          <div class="character-cube-lg brixo-3d bounce-in">
+            <div class="studs"><i></i><i></i></div>
+            <div class="face">
+              <span class="eye"></span>
+              <span class="eye"></span>
+              <span class="smile"></span>
+              <span class="blush l"></span>
+              <span class="blush r"></span>
+            </div>
+          </div>
+        </div>
+        <h2>Portal Estudiante</h2>
+        <p>Entra a los mundos de colores, números, animales y más. Gana <strong>LexiCoins</strong>, sube de nivel y desbloquea medallas.</p>
+        <div class="features-list">
+          <span>✨ 8 Mundos Blox</span>
+          <span>⚡ Quizzes interactivos</span>
+          <span>🏆 Medallas & Racha</span>
+        </div>
+        <a href="pages/student/login.html" class="btn-play primary-btn">
+          <span>¡A JUGAR!</span> 🚀
+        </a>
+      </article>
+
+      <!-- Teacher Portal -->
+      <article class="portal-card teacher-card">
+        <div class="card-badge teacher-badge">GESTIÓN Y CONTROL 🧑‍🏫</div>
+        <div class="portal-icon-wrap">
+          <div class="teacher-mascot">
+            <div class="apple-badge">🍎</div>
+            <div class="glasses-face">🤓</div>
+          </div>
+        </div>
+        <h2>Portal Docente</h2>
+        <p>Monitorea el progreso en vivo de tus estudiantes, revisa aciertos en quizzes, racha diaria y administra tus grupos escolares.</p>
+        <div class="features-list">
+          <span>📊 Métricas por alumno</span>
+          <span>🎯 Control de misiones</span>
+          <span>💾 Base de datos SQLite</span>
+        </div>
+        <a href="pages/teacher/login.html" class="btn-play teacher-btn">
+          <span>INGRESAR COMO DOCENTE</span> 📋
+        </a>
+      </article>
+    </main>
+
+    <!-- Quick Play Direct Access / Demo Accounts Banner -->
+    <section class="demo-accounts-card">
+      <div class="demo-header">
+        <span class="info-icon">💡</span>
+        <div>
+          <h3>Accesos Rápidos Demo (Preconfigurados en SQLite)</h3>
+          <p>Para probar de inmediato la plataforma sin registro previo:</p>
+        </div>
+      </div>
+      <div class="demo-tags">
+        <div class="demo-tag">
+          <strong>Estudiantes:</strong> <code>sofia</code> / <code>carlos</code> / <code>mateo</code> (clave: <code>1234</code>)
+        </div>
+        <div class="demo-tag">
+          <strong>Docente:</strong> <code>prof.maria@escuela.com</code> (clave: <code>profe123</code>)
+        </div>
+      </div>
+    </section>
+
+    <footer class="main-footer">
+      <p>LexiBlox © 2026 — Plataforma Educativa Tecnológica de Inglés para Niños de 6 a 8 años</p>
+      <p class="tech-stack-label">Tecnologías: HTML5 · Vanilla JavaScript ES6 · CSS3 Animations · SQLite WASM / Local DB</p>
+    </footer>
+  </div>
+
+  <script src="assets/js/core/db.js"></script>
+  <script src="assets/js/core/state.js"></script>
+</body>
+</html>

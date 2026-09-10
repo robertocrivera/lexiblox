@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LexiBlox — Entrada de Exploradores</title>
+  <link rel="stylesheet" href="../../assets/css/main.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/game.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700;800&family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+  <style>
+    .login-box {
+      max-width: 480px;
+      width: 100%;
+      background: rgba(30, 41, 59, 0.95);
+      border: 4px solid var(--brixo-blue);
+      border-radius: 32px;
+      padding: 2.2rem 2rem;
+      box-shadow: var(--shadow-toy), var(--shadow-glow-blue);
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+      text-align: center;
+      margin: auto;
+    }
+    .student-chips-select {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.8rem;
+    }
+    .student-chip-btn {
+      background: #0f172a;
+      border: 2px solid #334155;
+      border-radius: 16px;
+      padding: 0.8rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      transition: all 0.2s;
+    }
+    .student-chip-btn:hover, .student-chip-btn.selected {
+      border-color: #38bdf8;
+      background: #1e293b;
+      transform: translateY(-2px);
+    }
+    .student-chip-btn.selected {
+      border-color: #f59e0b;
+      box-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
+    }
+    .pin-input {
+      font-family: var(--font-game);
+      font-size: 2rem;
+      letter-spacing: 12px;
+      text-align: center;
+      background: #0f172a;
+      border: 3px solid #334155;
+      border-radius: 16px;
+      color: #fbbf24;
+      padding: 0.6rem;
+      width: 100%;
+      outline: none;
+    }
+    .pin-input:focus {
+      border-color: #38bdf8;
+    }
+  </style>
+</head>
+<body class="landing-body">
+  <div class="stars-bg"></div>
+
+  <div class="landing-container" style="min-height: 100vh; justify-content: center;">
+    <div class="login-box bounce-in">
+      <div class="character-cube-lg brixo-3d float-anim" style="margin: 0 auto;">
+        <div class="studs"><i></i><i></i></div>
+        <div class="face">
+          <span class="eye"></span><span class="eye"></span>
+          <span class="smile"></span>
+          <span class="blush l"></span><span class="blush r"></span>
+        </div>
+      </div>
+
+      <div>
+        <h2 style="font-family: var(--font-game); font-size: 2rem; color: #60a5fa;">¡Hola, Explorador!</h2>
+        <p style="color: #94a3b8; font-size: 0.95rem;">Selecciona tu personaje o escribe tu nombre para comenzar la aventura.</p>
+      </div>
+
+      <!-- Quick Selector for kids -->
+      <div class="student-chips-select">
+        <div class="student-chip-btn selected" onclick="selectDemo('sofia')">
+          <span style="font-size: 1.5rem;">👧</span>
+          <div style="text-align: left;">
+            <strong style="display:block; color:#fff; font-size:0.95rem;">Sofía</strong>
+            <small style="color:#38bdf8;">Nivel 3 ⚡</small>
+          </div>
+        </div>
+        <div class="student-chip-btn" onclick="selectDemo('carlos')">
+          <span style="font-size: 1.5rem;">👦</span>
+          <div style="text-align: left;">
+            <strong style="display:block; color:#fff; font-size:0.95rem;">Carlos</strong>
+            <small style="color:#f59e0b;">Nivel 2 ⚡</small>
+          </div>
+        </div>
+        <div class="student-chip-btn" onclick="selectDemo('mateo')">
+          <span style="font-size: 1.5rem;">🧒</span>
+          <div style="text-align: left;">
+            <strong style="display:block; color:#fff; font-size:0.95rem;">Mateo</strong>
+            <small style="color:#10b981;">Nivel 4 ⚡</small>
+          </div>
+        </div>
+        <div class="student-chip-btn" onclick="selectDemo('vale')">
+          <span style="font-size: 1.5rem;">👧</span>
+          <div style="text-align: left;">
+            <strong style="display:block; color:#fff; font-size:0.95rem;">Valentina</strong>
+            <small style="color:#ec4899;">Nivel 1 ⚡</small>
+          </div>
+        </div>
+      </div>
+
+      <form id="studentLoginForm" onsubmit="handleLogin(event)" style="display: flex; flex-direction: column; gap: 1rem;">
+        <input type="hidden" id="studentUsername" value="sofia">
+        <div>
+          <label style="display:block; text-align: left; font-size: 0.85rem; color: #cbd5e1; margin-bottom: 0.3rem;">Tu PIN secreto (Demo: 1234)</label>
+          <input type="password" id="studentPin" class="pin-input" maxlength="4" value="1234" required placeholder="••••">
+        </div>
+
+        <div id="loginError" style="color: #f43f5e; font-weight: bold; font-size: 0.88rem; display: none;"></div>
+
+        <button type="submit" class="btn-play primary-btn" style="width: 100%;">
+          <span>¡ENTRAR A JUGAR!</span> 🚀
+        </button>
+      </form>
+
+      <div style="display:flex; justify-content: space-between; font-size: 0.85rem;">
+        <a href="../../index.html" style="color: #94a3b8; text-decoration: none;">← Volver al inicio</a>
+        <a href="../teacher/login.html" style="color: #c084fc; text-decoration: none;">Soy Docente →</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../assets/js/core/db.js"></script>
+  <script src="../../assets/js/core/state.js"></script>
+  <script src="../../assets/js/core/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      await LexiDB.init();
+    });
+
+    function selectDemo(username) {
+      document.querySelectorAll('.student-chip-btn').forEach(b => b.classList.remove('selected'));
+      event.currentTarget.classList.add('selected');
+      document.getElementById('studentUsername').value = username;
+      document.getElementById('studentPin').value = '1234';
+    }
+
+    function handleLogin(e) {
+      e.preventDefault();
+      const user = document.getElementById('studentUsername').value;
+      const pin = document.getElementById('studentPin').value;
+      const res = LexiAuth.loginStudent(user, pin);
+
+      if (res.success) {
+        window.location.href = 'world.html';
+      } else {
+        const err = document.getElementById('loginError');
+        err.textContent = res.message;
+        err.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>

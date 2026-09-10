@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LexiBlox — Asignación de Misiones</title>
+  <link rel="stylesheet" href="../../assets/css/main.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/teacher.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700;800&family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="teacher-layout">
+  <aside class="teacher-sidebar">
+    <div class="teacher-brand">
+      <div class="mini-cube" style="background: linear-gradient(135deg, #a855f7, #6b21a8); border: 2px solid #c084fc;">
+        <div class="cube-studs"><span style="background: #c084fc;"></span><span style="background: #c084fc;"></span></div>
+      </div>
+      <h2>LexiBlox Docente</h2>
+    </div>
+
+    <nav class="teacher-nav">
+      <a href="dashboard.html" class="teacher-nav-link"><span>📊</span> Dashboard General</a>
+      <a href="students.html" class="teacher-nav-link"><span>🧒</span> Lista de Alumnos</a>
+      <a href="groups.html" class="teacher-nav-link"><span>🏫</span> Salones y Grupos</a>
+      <a href="reports.html" class="teacher-nav-link"><span>📈</span> Reportes de Quizzes</a>
+      <a href="missions.html" class="teacher-nav-link active"><span>🎯</span> Asignar Misiones</a>
+    </nav>
+    <div style="margin-top: auto;">
+      <a href="dashboard.html" class="btn-play ghost-btn" style="padding: 0.6rem; font-size: 0.85rem; width: 100%;">← Volver al Panel</a>
+    </div>
+  </aside>
+
+  <main class="teacher-main">
+    <header class="teacher-topbar">
+      <div>
+        <h1 style="font-family: var(--font-game); font-size: 2rem; color: #fff;">Catálogo de Misiones</h1>
+        <p style="color: #9ca3af;">Revisa los objetivos pedagógicos y recompensas configuradas en la base de datos.</p>
+      </div>
+    </header>
+
+    <section id="missionsListContainer" style="display: flex; flex-direction: column; gap: 1rem;">
+      <!-- Populated from missions-admin.js -->
+    </section>
+  </main>
+
+  <script src="../../assets/js/core/db.js"></script>
+  <script src="../../assets/js/core/state.js"></script>
+  <script src="../../assets/js/teacher/missions-admin.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      await LexiDB.init();
+      TeacherMissionsAdmin.init();
+    });
+  </script>
+</body>
+</html>

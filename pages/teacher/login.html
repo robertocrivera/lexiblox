@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LexiBlox — Portal Docente</title>
+  <link rel="stylesheet" href="../../assets/css/main.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/teacher.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700;800&family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+  <style>
+    .teacher-login-box {
+      max-width: 440px;
+      width: 100%;
+      background: #111827;
+      border: 3px solid #8b5cf6;
+      border-radius: 28px;
+      padding: 2.2rem 2rem;
+      box-shadow: 0 16px 35px rgba(0,0,0,0.6), 0 0 25px rgba(139, 92, 246, 0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+      text-align: center;
+      margin: auto;
+    }
+    .form-group {
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .form-group label {
+      font-size: 0.88rem;
+      color: #cbd5e1;
+      font-weight: 700;
+    }
+    .form-control {
+      background: #1f2937;
+      border: 2px solid #374151;
+      border-radius: 12px;
+      padding: 0.8rem 1rem;
+      color: #ffffff;
+      font-size: 0.95rem;
+      outline: none;
+    }
+    .form-control:focus {
+      border-color: #a855f7;
+    }
+  </style>
+</head>
+<body class="landing-body">
+  <div class="stars-bg"></div>
+
+  <div class="landing-container" style="min-height: 100vh; justify-content: center;">
+    <div class="teacher-login-box bounce-in">
+      <div class="teacher-mascot" style="margin-bottom: 0.5rem;">
+        <div class="apple-badge">🍎</div>
+        <div class="glasses-face">👩‍🏫</div>
+      </div>
+
+      <div>
+        <h2 style="font-family: var(--font-game); font-size: 1.9rem; color: #c084fc;">Acceso para Docentes</h2>
+        <p style="color: #9ca3af; font-size: 0.9rem;">Gestiona tus aulas, sigue el rendimiento de quizzes y asigna misiones en SQLite.</p>
+      </div>
+
+      <form id="teacherLoginForm" onsubmit="handleTeacherLogin(event)" style="display: flex; flex-direction: column; gap: 1.1rem;">
+        <div class="form-group">
+          <label>Correo Electrónico Docente</label>
+          <input type="email" id="teacherEmail" class="form-control" value="prof.maria@escuela.com" required>
+        </div>
+
+        <div class="form-group">
+          <label>Contraseña</label>
+          <input type="password" id="teacherPassword" class="form-control" value="profe123" required>
+        </div>
+
+        <div id="loginError" style="color: #f43f5e; font-weight: bold; font-size: 0.85rem; display: none;"></div>
+
+        <button type="submit" class="btn-play teacher-btn" style="width: 100%;">
+          <span>INGRESAR AL PANEL</span> 📋
+        </button>
+      </form>
+
+      <div style="background: rgba(139, 92, 246, 0.1); border: 1px dashed #8b5cf6; border-radius: 12px; padding: 0.6rem; font-size: 0.8rem; color: #c084fc;">
+        💡 <strong>Cuenta predeterminada:</strong> prof.maria@escuela.com / profe123
+      </div>
+
+      <div style="display: flex; justify-content: space-between; font-size: 0.85rem; margin-top: 0.5rem;">
+        <a href="../../index.html" style="color: #9ca3af; text-decoration: none;">← Volver al inicio</a>
+        <a href="../student/login.html" style="color: #60a5fa; text-decoration: none;">Soy Estudiante 🧒</a>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../assets/js/core/db.js"></script>
+  <script src="../../assets/js/core/state.js"></script>
+  <script src="../../assets/js/core/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      await LexiDB.init();
+    });
+
+    function handleTeacherLogin(e) {
+      e.preventDefault();
+      const email = document.getElementById('teacherEmail').value;
+      const pass = document.getElementById('teacherPassword').value;
+      const res = LexiAuth.loginTeacher(email, pass);
+
+      if (res.success) {
+        window.location.href = 'dashboard.html';
+      } else {
+        const err = document.getElementById('loginError');
+        err.textContent = res.message;
+        err.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>

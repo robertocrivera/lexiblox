@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "mission_id": 1,
+    "question": "¿Cuál de estos colores es RED?",
+    "word_en": "RED",
+    "word_es": "Rojo",
+    "options": ["Rojo 🔴", "Azul 🔵", "Verde 🟢", "Amarillo 🟡"],
+    "correct_index": 0
+  },
+  {
+    "id": 2,
+    "mission_id": 1,
+    "question": "¿Cómo se dice 'Azul' en inglés?",
+    "word_en": "BLUE",
+    "word_es": "Azul",
+    "options": ["Yellow", "Blue", "Green", "Purple"],
+    "correct_index": 1
+  },
+  {
+    "id": 3,
+    "mission_id": 2,
+    "question": "¿Qué número representa 'THREE'?",
+    "word_en": "THREE",
+    "word_es": "Tres",
+    "options": ["1", "2", "3", "5"],
+    "correct_index": 2
+  }
+]

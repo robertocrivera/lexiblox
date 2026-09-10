@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LexiBlox — Mapa del Mundo</title>
+  <link rel="stylesheet" href="../../assets/css/main.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/game.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700;800&family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="game-layout">
+  <div class="stars-bg"></div>
+
+  <!-- Top Navigation with Player HUD -->
+  <nav class="game-nav">
+    <a href="world.html" class="nav-brand">
+      <div class="mini-cube brixo-mini">
+        <div class="cube-studs"><span></span><span></span></div>
+        <div class="cube-face"><span class="eye"></span><span class="eye"></span><span class="mouth"></span></div>
+      </div>
+      <span class="title">LexiBlox</span>
+    </a>
+
+    <div class="nav-stats">
+      <div class="stat-chip coins pulse-glow">
+        <span>🪙</span> <span id="hudCoins">0</span>
+      </div>
+      <div class="stat-chip streak">
+        <span>🔥</span> <span id="hudStreak">0</span> Días
+      </div>
+      <div class="stat-chip level">
+        <span>⚡ Nivel</span> <span id="hudLevel">1</span>
+      </div>
+      <a href="profile.html" class="btn-play ghost-btn" style="padding: 0.4rem 0.9rem; font-size: 0.9rem;">
+        <span>Mi Perfil</span> 🎒
+      </a>
+      <button onclick="LexiAuth.logout()" class="btn-play danger-btn" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">
+        Salir 🚪
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Game Container -->
+  <div class="game-content-container">
+    <!-- Character Guide Dialogue -->
+    <section class="mascot-dialogue bounce-in">
+      <div class="character-cube-lg brixo-3d float-anim" style="width: 70px; height: 70px; flex-shrink: 0;">
+        <div class="studs"><i></i><i></i></div>
+        <div class="face">
+          <span class="eye"></span><span class="eye"></span>
+          <span class="smile"></span>
+          <span class="blush l"></span><span class="blush r"></span>
+        </div>
+      </div>
+      <div class="dialogue-bubble">
+        <div class="dialogue-speaker">Brixo dice:</div>
+        <div class="dialogue-text" id="mascotText">
+          ¡Hola <strong id="studentNameGreeting">Explorador</strong>! Selecciona una zona de bloques para iniciar tu misión. ¡Aprende nuevas palabras y acumula LexiCoins! 🌟
+        </div>
+      </div>
+    </section>
+
+    <!-- World Map Section -->
+    <header class="world-header">
+      <div>
+        <h2>🗺️ Mundos de Aprendizaje</h2>
+        <p>Completa las misiones para desbloquear nuevos reinos y enfrentar los retos de Vox.</p>
+      </div>
+      <div class="stat-chip" style="background: rgba(30, 41, 59, 0.8); border-color: #6366f1;">
+        <span style="color: #c084fc;">Experiencia Total:</span> <strong id="hudXp" style="color: #fff; margin-left: 5px;">0</strong> XP
+      </div>
+    </header>
+
+    <!-- Zones Grid (Populated from SQLite) -->
+    <main class="zones-grid" id="zonesGrid">
+      <!-- Injected via JavaScript -->
+    </main>
+  </div>
+
+  <script src="../../assets/js/core/db.js"></script>
+  <script src="../../assets/js/core/state.js"></script>
+  <script src="../../assets/js/core/auth.js"></script>
+  <script src="../../assets/js/student/worldmap.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      await LexiDB.init();
+      LexiAuth.requireAuth('student', 'login.html');
+      initWorldMap();
+    });
+  </script>
+</body>
+</html>

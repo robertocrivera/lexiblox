@@ -1,0 +1,6 @@
+[
+  { "id": 1, "zone_id": 1, "title": "Primary Colors", "description": "Aprende rojo, azul y amarillo con Brixo", "target_words": "red,blue,yellow", "xp": 50, "coins": 25 },
+  { "id": 2, "zone_id": 1, "title": "Nature Colors", "description": "Aprende verde, café y naranja", "target_words": "green,brown,orange", "xp": 60, "coins": 30 },
+  { "id": 3, "zone_id": 2, "title": "Counting 1 to 5", "description": "Cuenta los primeros números con Zippy", "target_words": "one,two,three,four,five", "xp": 50, "coins": 25 },
+  { "id": 4, "zone_id": 2, "title": "Counting 6 to 10", "description": "Llega a la cima de la montaña", "target_words": "six,seven,eight,nine,ten", "xp": 60, "coins": 30 }
+]

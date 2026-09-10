@@ -1,0 +1,15 @@
+{
+  "colors": [
+    { "en": "red", "es": "rojo", "category": "primary", "icon": "🔴" },
+    { "en": "blue", "es": "azul", "category": "primary", "icon": "🔵" },
+    { "en": "yellow", "es": "amarillo", "category": "primary", "icon": "🟡" },
+    { "en": "green", "es": "verde", "category": "secondary", "icon": "🟢" }
+  ],
+  "numbers": [
+    { "en": "one", "es": "uno", "icon": "1️⃣" },
+    { "en": "two", "es": "dos", "icon": "2️⃣" },
+    { "en": "three", "es": "tres", "icon": "3️⃣" },
+    { "en": "four", "es": "cuatro", "icon": "4️⃣" },
+    { "en": "five", "es": "cinco", "icon": "5️⃣" }
+  ]
+}

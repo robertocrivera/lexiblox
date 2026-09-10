@@ -1,0 +1,391 @@
+/* ==========================================================================
+   LexiBlox — Main Styles (Variables, Reset, Layout)
+   ========================================================================== */
+
+:root {
+  /* Color Palette - Vibrant, Friendly & Game-Like */
+  --bg-dark: #0f172a;
+  --bg-card: #1e293b;
+  --bg-card-hover: #334155;
+  --border-color: #334155;
+
+  /* Character Colors */
+  --brixo-blue: #3b82f6;
+  --brixo-blue-dark: #1d4ed8;
+  --brixo-blue-light: #93c5fd;
+
+  --lexo-red: #ef4444;
+  --lexo-red-dark: #b91c1c;
+
+  --zippy-yellow: #f59e0b;
+  --zippy-yellow-light: #fde047;
+
+  --vox-purple: #8b5cf6;
+  --vox-purple-dark: #5b21b6;
+
+  --stella-gold: #fbbf24;
+  --stella-gold-light: #fef08a;
+
+  /* UI Tokens */
+  --success-green: #10b981;
+  --success-green-dark: #047857;
+  --danger-red: #f43f5e;
+  --text-white: #ffffff;
+  --text-muted: #94a3b8;
+  --text-dark: #0f172a;
+
+  /* Shadows */
+  --shadow-toy: 0 8px 0 rgba(0, 0, 0, 0.35);
+  --shadow-toy-sm: 0 4px 0 rgba(0, 0, 0, 0.25);
+  --shadow-glow-gold: 0 0 25px rgba(251, 191, 36, 0.45);
+  --shadow-glow-blue: 0 0 25px rgba(59, 130, 246, 0.45);
+
+  /* Fonts */
+  --font-game: 'Fredoka', cursive, system-ui, sans-serif;
+  --font-body: 'Nunito', system-ui, -apple-system, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+}
+
+body {
+  font-family: var(--font-body);
+  background: radial-gradient(circle at 50% 20%, #1e1b4b 0%, #0f172a 70%, #090d16 100%);
+  color: var(--text-white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* Background animated stars */
+.stars-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 100px 150px, #fde047, rgba(0,0,0,0)),
+    radial-gradient(3px 3px at 250px 80px, #93c5fd, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 400px 300px, #ffffff, rgba(0,0,0,0)),
+    radial-gradient(3px 3px at 550px 180px, #f472b6, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 700px 420px, #fef08a, rgba(0,0,0,0)),
+    radial-gradient(3px 3px at 900px 120px, #6ee7b7, rgba(0,0,0,0)),
+    radial-gradient(2px 2px at 1100px 250px, #ffffff, rgba(0,0,0,0));
+  background-repeat: repeat;
+  background-size: 600px 600px;
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Main Landing Container */
+.landing-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.2rem;
+}
+
+/* Hero Header */
+.hero-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-badge {
+  position: relative;
+  display: inline-flex;
+  margin-bottom: 0.5rem;
+}
+
+.star-icon {
+  position: absolute;
+  top: -12px;
+  right: -14px;
+  font-size: 2rem;
+}
+
+.game-title {
+  font-family: var(--font-game);
+  font-size: 3.8rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  background: linear-gradient(135deg, #fef08a 0%, #fbbf24 40%, #f59e0b 70%, #f97316 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 4px 20px rgba(245, 158, 11, 0.4);
+  line-height: 1.1;
+}
+
+.game-tagline {
+  font-family: var(--font-game);
+  color: #c4b5fd;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.game-desc {
+  max-width: 620px;
+  color: #cbd5e1;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  margin-top: 0.25rem;
+}
+
+/* Characters showcase row */
+.characters-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.char-pill {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(30, 41, 59, 0.85);
+  border: 2px solid #334155;
+  padding: 0.5rem 1rem;
+  border-radius: 9999px;
+  box-shadow: var(--shadow-toy-sm);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.char-pill:hover {
+  transform: translateY(-4px);
+  border-color: #64748b;
+}
+
+.char-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: inset 0 2px 4px rgba(255,255,255,0.3), 0 3px 0 rgba(0,0,0,0.3);
+}
+
+.brixo-bg { background: linear-gradient(135deg, var(--brixo-blue-light), var(--brixo-blue-dark)); }
+.lexo-bg { background: linear-gradient(135deg, #f87171, var(--lexo-red-dark)); }
+.zippy-bg { background: linear-gradient(135deg, var(--zippy-yellow-light), var(--zippy-yellow)); }
+.vox-bg { background: linear-gradient(135deg, #c084fc, var(--vox-purple-dark)); }
+.stella-bg { background: linear-gradient(135deg, var(--stella-gold-light), #d97706); }
+
+.char-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.char-info strong {
+  font-family: var(--font-game);
+  font-size: 0.95rem;
+  color: #f8fafc;
+}
+
+.char-info small {
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+/* Portals Grid */
+.portals-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  width: 100%;
+}
+
+.portal-card {
+  background: rgba(30, 41, 59, 0.9);
+  border-radius: 28px;
+  padding: 2.2rem 2rem;
+  border: 4px solid #3b82f6;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: var(--shadow-toy);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  backdrop-filter: blur(10px);
+}
+
+.portal-card:hover {
+  transform: translateY(-8px);
+}
+
+.student-card {
+  border-color: #3b82f6;
+  background: linear-gradient(180deg, rgba(30, 58, 138, 0.4) 0%, rgba(15, 23, 42, 0.95) 100%);
+}
+
+.student-card:hover {
+  box-shadow: 0 16px 0 rgba(0,0,0,0.4), var(--shadow-glow-blue);
+}
+
+.teacher-card {
+  border-color: #8b5cf6;
+  background: linear-gradient(180deg, rgba(88, 28, 135, 0.3) 0%, rgba(15, 23, 42, 0.95) 100%);
+}
+
+.teacher-card:hover {
+  box-shadow: 0 16px 0 rgba(0,0,0,0.4), 0 0 25px rgba(139, 92, 246, 0.45);
+}
+
+.card-badge {
+  position: absolute;
+  top: -16px;
+  background: linear-gradient(135deg, #f59e0b, #ea580c);
+  color: #ffffff;
+  font-family: var(--font-game);
+  font-weight: 800;
+  font-size: 0.85rem;
+  padding: 0.4rem 1.2rem;
+  border-radius: 9999px;
+  letter-spacing: 1px;
+  box-shadow: var(--shadow-toy-sm);
+}
+
+.teacher-badge {
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+}
+
+.portal-icon-wrap {
+  margin: 1.2rem 0 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.portal-card h2 {
+  font-family: var(--font-game);
+  font-size: 1.9rem;
+  font-weight: 800;
+  margin-bottom: 0.6rem;
+}
+
+.student-card h2 { color: #60a5fa; }
+.teacher-card h2 { color: #c084fc; }
+
+.portal-card p {
+  color: #cbd5e1;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+.features-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.8rem;
+  width: 100%;
+}
+
+.features-list span {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid #475569;
+  border-radius: 12px;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+/* Demo box banner */
+.demo-accounts-card {
+  width: 100%;
+  background: rgba(15, 23, 42, 0.8);
+  border: 2px dashed #475569;
+  border-radius: 20px;
+  padding: 1.2rem 1.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.demo-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.demo-header h3 {
+  font-family: var(--font-game);
+  font-size: 1.1rem;
+  color: #fbbf24;
+}
+
+.demo-header p {
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.demo-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.demo-tag {
+  background: #1e293b;
+  border: 1px solid #334155;
+  padding: 0.4rem 0.8rem;
+  border-radius: 10px;
+  font-size: 0.88rem;
+  color: #cbd5e1;
+}
+
+.demo-tag code {
+  background: #0f172a;
+  color: #38bdf8;
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+/* Footer */
+.main-footer {
+  text-align: center;
+  color: #64748b;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin-top: 1rem;
+}
+
+.tech-stack-label {
+  color: #475569;
+  font-size: 0.8rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .game-title { font-size: 2.8rem; }
+  .portals-grid { grid-template-columns: 1fr; }
+  .characters-row { gap: 0.5rem; }
+  .char-pill { padding: 0.4rem 0.8rem; }
+}

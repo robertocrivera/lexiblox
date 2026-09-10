@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LexiBlox — Panel de Control Docente</title>
+  <link rel="stylesheet" href="../../assets/css/main.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/teacher.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700;800&family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="teacher-layout">
+  <!-- Sidebar -->
+  <aside class="teacher-sidebar">
+    <div class="teacher-brand">
+      <div class="mini-cube" style="background: linear-gradient(135deg, #a855f7, #6b21a8); border: 2px solid #c084fc;">
+        <div class="cube-studs"><span style="background: #c084fc;"></span><span style="background: #c084fc;"></span></div>
+      </div>
+      <h2>LexiBlox Docente</h2>
+    </div>
+
+    <nav class="teacher-nav">
+      <a href="dashboard.html" class="teacher-nav-link active">
+        <span>📊</span> Dashboard General
+      </a>
+      <a href="students.html" class="teacher-nav-link">
+        <span>🧒</span> Lista de Alumnos
+      </a>
+      <a href="groups.html" class="teacher-nav-link">
+        <span>🏫</span> Salones y Grupos
+      </a>
+      <a href="reports.html" class="teacher-nav-link">
+        <span>📈</span> Reportes de Quizzes
+      </a>
+      <a href="missions.html" class="teacher-nav-link">
+        <span>🎯</span> Asignar Misiones
+      </a>
+    </nav>
+
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 0.8rem;">
+      <a href="../../index.html" class="btn-play ghost-btn" style="padding: 0.6rem; font-size: 0.85rem;">
+        Ir a Portada 🌐
+      </a>
+      <button onclick="LexiAuth.logout()" class="btn-play danger-btn" style="padding: 0.6rem; font-size: 0.85rem;">
+        Cerrar Sesión 🚪
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content Area -->
+  <main class="teacher-main">
+    <!-- Topbar -->
+    <header class="teacher-topbar">
+      <div>
+        <h1 style="font-family: var(--font-game); font-size: 2.2rem; color: #ffffff;">Panel de Control Educativo</h1>
+        <p style="color: #9ca3af;">Bienvenida, <strong id="teacherGreeting" style="color: #c084fc;">Prof. María López</strong> · Aula: <strong>Segundo Grado A</strong></p>
+      </div>
+      <div style="display: flex; gap: 0.8rem;">
+        <button onclick="exportSqliteData()" class="btn-play ghost-btn" style="font-size: 0.85rem; padding: 0.5rem 1rem;">
+          💾 Descargar BD SQLite
+        </button>
+      </div>
+    </header>
+
+    <!-- KPIs Row -->
+    <section class="teacher-kpis">
+      <div class="kpi-card">
+        <div class="kpi-icon">🧒</div>
+        <div>
+          <h3 id="kpiTotalStudents">4</h3>
+          <p>Alumnos Registrados</p>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">⭐</div>
+        <div id="kpiAvgLevel">Nv. 2.5</div>
+        <div>
+          <h3>Nv. 2.5</h3>
+          <p>Nivel Promedio</p>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">🔥</div>
+        <div>
+          <h3 id="kpiAvgStreak">4.0</h3>
+          <p>Días de Racha Media</p>
+        </div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-icon">🪙</div>
+        <div>
+          <h3 id="kpiTotalCoins">900</h3>
+          <p>LexiCoins Ganados</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Students Performance Table -->
+    <section class="data-card">
+      <div class="table-header-row">
+        <div>
+          <h2 style="font-family: var(--font-game); color: #f9fafb; font-size: 1.4rem;">Rendimiento del Aula (SQLite Live)</h2>
+          <p style="color: #9ca3af; font-size: 0.85rem;">Monitoreo en tiempo real de XP, monedas y estados de alerta.</p>
+        </div>
+        <button onclick="loadDashboardData()" class="btn-play ghost-btn" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">
+          🔄 Actualizar
+        </button>
+      </div>
+
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>ALUMNO</th>
+            <th>USUARIO</th>
+            <th>NIVEL</th>
+            <th>XP TOTAL</th>
+            <th>LEXICOINS</th>
+            <th>RACHA</th>
+            <th>ESTADO</th>
+          </tr>
+        </thead>
+        <tbody id="studentsTableBody">
+          <!-- Populated from SQLite -->
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Fast Mission Assign Box -->
+    <section class="data-card" style="background: linear-gradient(135deg, #1f2937 0%, rgba(88, 28, 135, 0.2) 100%); border-color: #8b5cf6;">
+      <h2 style="font-family: var(--font-game); color: #c084fc; font-size: 1.4rem; margin-bottom: 0.4rem;">🚀 Misión Destacada de la Semana</h2>
+      <p style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 1.2rem;">Asigna de forma prioritaria los temas de inglés a trabajar en la sesión de hoy.</p>
+      
+      <div style="display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+        <select id="missionSelect" class="form-control" style="max-width: 320px; background: #111827;">
+          <option value="1">🌿 Zona 1: Primary Colors (Básico)</option>
+          <option value="5">🔢 Zona 2: Counting 1 to 5 (Básico)</option>
+          <option value="3">🦁 Zona 3: Animal Safari (Intermedio)</option>
+        </select>
+        <button onclick="assignMissionNotice()" class="btn-play teacher-btn">
+          <span>PUBLICAR EN EL TABLÓN</span> 📢
+        </button>
+      </div>
+      <div id="assignNotice" style="margin-top: 0.8rem; color: #34d399; font-weight: bold; display: none;">
+        ¡Misión asignada con éxito a todo el grupo Segundo Grado A!
+      </div>
+    </section>
+  </main>
+
+  <script src="../../assets/js/core/db.js"></script>
+  <script src="../../assets/js/core/state.js"></script>
+  <script src="../../assets/js/core/auth.js"></script>
+  <script src="../../assets/js/teacher/dashboard.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      await LexiDB.init();
+      LexiAuth.requireAuth('teacher', 'login.html');
+      loadDashboardData();
+    });
+  </script>
+</body>
+</html>

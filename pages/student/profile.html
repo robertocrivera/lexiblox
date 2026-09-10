@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LexiBlox — Mi Perfil de Aventurero</title>
+  <link rel="stylesheet" href="../../assets/css/main.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/game.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700;800&family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+  <style>
+    .profile-card {
+      background: rgba(30, 41, 59, 0.95);
+      border: 4px solid #3b82f6;
+      border-radius: 32px;
+      padding: 2rem;
+      box-shadow: var(--shadow-toy);
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+    .badges-inventory {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+    .badge-card {
+      background: #1e293b;
+      border: 2px solid #334155;
+      border-radius: 20px;
+      padding: 1.2rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .badge-card.unlocked {
+      border-color: #fbbf24;
+      background: linear-gradient(180deg, #1e293b 0%, rgba(245, 158, 11, 0.1) 100%);
+    }
+    .badge-card.locked {
+      opacity: 0.45;
+      filter: grayscale(0.8);
+    }
+  </style>
+</head>
+<body class="game-layout">
+  <div class="stars-bg"></div>
+
+  <!-- Top Navigation with Player HUD -->
+  <nav class="game-nav">
+    <a href="world.html" class="nav-brand">
+      <div class="mini-cube brixo-mini">
+        <div class="cube-studs"><span></span><span></span></div>
+        <div class="cube-face"><span class="eye"></span><span class="eye"></span><span class="mouth"></span></div>
+      </div>
+      <span class="title">LexiBlox</span>
+    </a>
+
+    <div class="nav-stats">
+      <div class="stat-chip coins">
+        <span>🪙</span> <span id="hudCoins">0</span>
+      </div>
+      <div class="stat-chip streak">
+        <span>🔥</span> <span id="hudStreak">0</span> Días
+      </div>
+      <a href="world.html" class="btn-play primary-btn" style="padding: 0.4rem 0.9rem; font-size: 0.9rem;">
+        <span>🗺️ Explorar Mundos</span>
+      </a>
+      <button onclick="LexiAuth.logout()" class="btn-play danger-btn" style="padding: 0.4rem 0.8rem; font-size: 0.85rem;">
+        Salir 🚪
+      </button>
+    </div>
+  </nav>
+
+  <div class="game-content-container">
+    <main class="profile-card bounce-in">
+      <!-- Player Card Header -->
+      <div style="display: flex; align-items: center; gap: 1.8rem; flex-wrap: wrap;">
+        <div class="character-cube-lg brixo-3d float-anim" style="width: 100px; height: 100px;">
+          <div class="studs"><i></i><i></i></div>
+          <div class="face">
+            <span class="eye"></span><span class="eye"></span>
+            <span class="smile"></span>
+            <span class="blush l"></span><span class="blush r"></span>
+          </div>
+        </div>
+        <div style="flex: 1;">
+          <span style="color: #38bdf8; font-family: var(--font-game); font-weight: 700; font-size: 0.95rem;">CUBO AVATAR: BRIXO CLÁSICO</span>
+          <h2 id="profStudentName" style="font-family: var(--font-game); font-size: 2.2rem; color: #ffffff;">Sofía González</h2>
+          <p style="color: #94a3b8; font-size: 1rem;">Miembro de: <strong style="color: #cbd5e1;">Segundo Grado A (Escuela Innova Kids)</strong></p>
+        </div>
+        <div style="display: flex; gap: 1rem;">
+          <div class="stat-chip gold-glow" style="flex-direction: column; padding: 0.8rem 1.4rem; text-align: center;">
+            <span style="font-size: 1.8rem;">🪙</span>
+            <strong id="profCoins" style="font-size: 1.4rem; color: #fbbf24;">0</strong>
+            <small style="color: #94a3b8;">LexiCoins</small>
+          </div>
+          <div class="stat-chip" style="flex-direction: column; padding: 0.8rem 1.4rem; text-align: center; border-color: #3b82f6;">
+            <span style="font-size: 1.8rem;">⚡</span>
+            <strong id="profLevel" style="font-size: 1.4rem; color: #60a5fa;">Nv. 1</strong>
+            <small style="color: #94a3b8;">Rango</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience Bar -->
+      <div style="background: #0f172a; padding: 1.2rem; border-radius: 20px; border: 2px solid #334155;">
+        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+          <span style="font-family: var(--font-game); font-weight: 700; color: #c084fc;">Progreso al Siguiente Nivel:</span>
+          <span style="font-family: var(--font-game); font-weight: 700; color: #ffffff;"><span id="profXp">0</span> / 1000 XP</span>
+        </div>
+        <div class="zone-progress-bar" style="height: 14px;">
+          <div id="profXpFill" class="zone-progress-fill" style="width: 40%; background: linear-gradient(90deg, #a855f7, #6366f1);"></div>
+        </div>
+      </div>
+
+      <!-- Badges Showcase -->
+      <div>
+        <h3 style="font-family: var(--font-game); font-size: 1.5rem; color: #fbbf24; margin-bottom: 1rem;">🏆 Medallas y Trofeos Desbloqueados</h3>
+        <div class="badges-inventory" id="badgesGrid">
+          <!-- Injected via JavaScript -->
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../assets/js/core/db.js"></script>
+  <script src="../../assets/js/core/state.js"></script>
+  <script src="../../assets/js/core/auth.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      await LexiDB.init();
+      LexiAuth.requireAuth('student', 'login.html');
+
+      const student = LexiState.getStudent();
+      if (!student) return;
+
+      document.getElementById('hudCoins').textContent = student.lexi_coins || 0;
+      document.getElementById('hudStreak').textContent = student.streak_days || 1;
+      document.getElementById('profStudentName').textContent = student.name;
+      document.getElementById('profCoins').textContent = student.lexi_coins;
+      document.getElementById('profLevel').textContent = `Nv. ${student.level}`;
+      document.getElementById('profXp').textContent = student.xp;
+      
+      const xpPct = Math.min(100, Math.round((student.xp % 1000) / 10));
+      document.getElementById('profXpFill').style.width = `${xpPct}%`;
+
+      // Load badges
+      const allBadges = LexiDB.query('SELECT * FROM badges');
+      const unlockedIds = LexiDB.query('SELECT badge_id FROM student_badges WHERE student_id = ?', [student.id]).map(b => b.badge_id);
+
+      const grid = document.getElementById('badgesGrid');
+      grid.innerHTML = '';
+
+      allBadges.forEach(b => {
+        const isUnlocked = unlockedIds.includes(b.id) || (b.id <= 3); // Demo unlock
+        const card = document.createElement('div');
+        card.className = `badge-card ${isUnlocked ? 'unlocked' : 'locked'}`;
+        card.innerHTML = `
+          <div style="font-size: 3rem;">${b.icon}</div>
+          <strong style="font-family: var(--font-game); color: ${isUnlocked ? '#fbbf24' : '#94a3b8'}; font-size: 1.05rem;">${b.name}</strong>
+          <p style="font-size: 0.82rem; color: #cbd5e1;">${b.description}</p>
+          <span style="font-size: 0.75rem; font-weight: 800; color: ${isUnlocked ? '#10b981' : '#64748b'};">${isUnlocked ? '✅ Desbloqueado' : '🔒 Bloqueado'}</span>
+        `;
+        grid.appendChild(card);
+      });
+    });
+  </script>
+</body>
+</html>

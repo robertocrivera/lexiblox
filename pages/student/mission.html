@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LexiBlox — Misión de Aprendizaje</title>
+  <link rel="stylesheet" href="../../assets/css/main.css">
+  <link rel="stylesheet" href="../../assets/css/animations.css">
+  <link rel="stylesheet" href="../../assets/css/components.css">
+  <link rel="stylesheet" href="../../assets/css/game.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700;800&family=Nunito:wght@600;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="game-layout">
+  <div class="stars-bg"></div>
+
+  <!-- Top Navigation with Player HUD -->
+  <nav class="game-nav">
+    <a href="world.html" class="nav-brand">
+      <div class="mini-cube brixo-mini">
+        <div class="cube-studs"><span></span><span></span></div>
+        <div class="cube-face"><span class="eye"></span><span class="eye"></span><span class="mouth"></span></div>
+      </div>
+      <span class="title">LexiBlox</span>
+    </a>
+
+    <div class="nav-stats">
+      <div class="stat-chip coins">
+        <span>🪙</span> <span id="hudCoins">0</span>
+      </div>
+      <div class="stat-chip level">
+        <span>⚡ Nivel</span> <span id="hudLevel">1</span>
+      </div>
+      <a href="world.html" class="btn-play ghost-btn" style="padding: 0.4rem 0.9rem; font-size: 0.9rem;">
+        <span>🗺️ Volver al Mapa</span>
+      </a>
+    </div>
+  </nav>
+
+  <div class="game-content-container">
+    <!-- Dialogue Header -->
+    <section class="mascot-dialogue bounce-in">
+      <div class="character-cube-lg brixo-3d float-anim" style="width: 64px; height: 64px; flex-shrink: 0;">
+        <div class="studs"><i></i><i></i></div>
+        <div class="face">
+          <span class="eye"></span><span class="eye"></span>
+          <span class="smile"></span>
+          <span class="blush l"></span><span class="blush r"></span>
+        </div>
+      </div>
+      <div class="dialogue-bubble">
+        <div class="dialogue-speaker">Brixo te acompaña:</div>
+        <div class="dialogue-text">
+          ¡Haz clic en la tarjeta para darle la vuelta y aprender cómo se dice en español! Toca la bocina 🔊 para escuchar la pronunciación real en inglés.
+        </div>
+      </div>
+    </section>
+
+    <!-- Mission Learning Card & Flashcard Stage -->
+    <main class="mission-card">
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <span id="missionZoneLabel" style="color: #38bdf8; font-family: var(--font-game); font-weight: 700; font-size: 0.95rem;">ZONA 1 · COLOR JUNGLE</span>
+          <h2 id="missionTitle" style="font-family: var(--font-game); font-size: 1.8rem; color: #ffffff;">Primary Colors</h2>
+        </div>
+        <div class="stat-chip" style="background: rgba(16, 185, 129, 0.2); border-color: #10b981; color: #34d399;">
+          <span>Recompensa: +25 🪙 / +50 XP</span>
+        </div>
+      </div>
+
+      <!-- 3D Flippable Flashcard -->
+      <div class="flashcard-stage" onclick="flipCard()">
+        <div class="flashcard-inner" id="flashcardInner">
+          <!-- Front (English) -->
+          <div class="flashcard-front">
+            <span style="font-size: 0.85rem; color: #93c5fd; font-weight: 800; letter-spacing: 2px;">ENGLISH WORD</span>
+            <div class="card-icon-huge" id="cardIcon">🔴</div>
+            <div class="card-word-en" id="cardWordEn">RED</div>
+            <button class="audio-btn" onclick="speakWord(event)" title="Escuchar pronunciación">🔊</button>
+            <small style="color: #cbd5e1; margin-top: 0.6rem;">(Toca para ver en español 🔄)</small>
+          </div>
+          <!-- Back (Spanish) -->
+          <div class="flashcard-back">
+            <span style="font-size: 0.85rem; color: #a7f3d0; font-weight: 800; letter-spacing: 2px;">TRADUCCIÓN</span>
+            <div class="card-icon-huge" id="cardIconBack">🔴</div>
+            <div class="card-word-es" id="cardWordEs">ROJO</div>
+            <p style="color: #e2e8f0; font-size: 1.1rem; margin-top: 0.5rem;" id="cardSampleSentence">"The red block is magic"</p>
+            <small style="color: #cbd5e1; margin-top: 0.6rem;">(Toca para volver a inglés 🔄)</small>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation & Quizz Trigger -->
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem;">
+        <button class="btn-play ghost-btn" onclick="prevCard()" id="btnPrev">
+          ← Anterior
+        </button>
+
+        <div style="font-family: var(--font-game); font-weight: 800; color: #fbbf24; font-size: 1.1rem;">
+          Palabra <span id="cardIndexNum">1</span> de <span id="cardTotalNum">3</span>
+        </div>
+
+        <button class="btn-play primary-btn" onclick="nextCard()" id="btnNext">
+          Siguiente →
+        </button>
+      </div>
+
+      <!-- Quiz launcher button once words reviewed -->
+      <div id="quizPromptBox" style="display: none; background: rgba(139, 92, 246, 0.2); border: 2px solid #8b5cf6; border-radius: 20px; padding: 1.4rem; text-align: center; margin-top: 1rem;">
+        <div style="font-size: 2.2rem; margin-bottom: 0.5rem;" class="wiggle">🟪</div>
+        <h3 style="font-family: var(--font-game); color: #c084fc; font-size: 1.4rem;">¡Vox te está esperando!</h3>
+        <p style="color: #cbd5e1; font-size: 0.95rem; margin-bottom: 1rem;">Has repasado todo el vocabulario de esta misión. ¿Listo para superar su examen de preguntas?</p>
+        <button onclick="goToQuiz()" class="btn-play gold-btn pulse-glow" style="padding: 0.9rem 2.5rem;">
+          <span>¡ENFRENTAR EL QUIZ DE VOX!</span> ⚔️
+        </button>
+      </div>
+    </main>
+  </div>
+
+  <script src="../../assets/js/core/db.js"></script>
+  <script src="../../assets/js/core/state.js"></script>
+  <script src="../../assets/js/core/auth.js"></script>
+  <script src="../../assets/js/student/mission.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      await LexiDB.init();
+      LexiAuth.requireAuth('student', 'login.html');
+      initMission();
+    });
+  </script>
+</body>
+</html>
